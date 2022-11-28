@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { extractTags } from './functions/extractTags'
+import getVideoId from "get-video-id";
 import './App.css'
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
     setYoutubeLinks(links => [...links, youtubeURL])
     setYoutubeURL('')
 
-    const extId = extractId(youtubeURL)
+    // const extId = extractId(youtubeURL)
+    const extId = getVideoId(youtubeURL).id
     setYoutubeId(id => [...id, extId])
   }
 
@@ -51,6 +53,7 @@ function App() {
         <input type="text" placeholder='Enter Youtube URL' value={youtubeURL} onChange={(e) => setYoutubeURL(e.target.value)} style={{ width: '600px', marginBottom: '20px', padding: '10px 5px' }} />
         <button onClick={addYoutubeLinks}>Add URL</button>
       </div>
+      
       <div style={{ textAlign: "left" }}>
         {
           youtubeLinks.map((link, index) => (
